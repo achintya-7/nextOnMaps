@@ -53,6 +53,8 @@ class MapSampleTwoState extends State<MapSampleTwo> {
   void initState() {
     super.initState();
     populateData();
+    ListModel.items.clear();
+    _locations.clear();
   }
 
   Future<void> addLocations() async {
@@ -247,70 +249,103 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                   Container(
                                     width: 100,
                                     decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.black, width: 3),
                                       borderRadius: BorderRadius.circular(32),
                                       color: Colors.white,
                                       shape: BoxShape.rectangle,
                                     ),
-                                    child: TextButton(
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                          enableFeedback: true,
+                                          overlayColor:
+                                              MaterialStateProperty.resolveWith(
+                                                  (states) {
+                                            return states.contains(
+                                                    MaterialState.pressed)
+                                                ? Colors.grey
+                                                : null;
+                                          }),
+                                          elevation:
+                                              MaterialStateProperty.all(8),
+                                          fixedSize: MaterialStateProperty.all(
+                                              const Size(250, 50)),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.white),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(32),
+                                                  side: const BorderSide(
+                                                      color: Colors.black,
+                                                      width: 3)))),
                                       onPressed: () async {
-
-                                        FocusScope.of(context)
-                                            .requestFocus(FocusNode());
-
-                                        setState(() {
-                                          _isLoading = 1;
-                                        });
-
-                                        if (_locations.length > 1 ||
-                                            _locations.isNotEmpty) {
-                                          ListModel.items.clear();
-                                          _locations.clear();
-                                        }
-
-                                        var directions = await LocationService()
-                                            .getDirections(
-                                                _originController.text,
-                                                _destinationController.text);
-
-                                        
-
-                                        _goToThePlace(
-                                          directions['start_location']['lat'],
-                                          directions['start_location']['lng'],
-                                          directions['bounds_ne'],
-                                          directions['bounds_sw'],
-                                        );
-
-                                        _setPolyline(
-                                            directions['polyline_decoded'],
-                                            LatLng(
-                                                directions['end_location']
-                                                    ['lat'],
-                                                directions['end_location']
-                                                    ['lng']));
-
-                                        try {
-                                          await addLocations();
-                                          for (var item in _locations) {
-                                            if (isNumeric(
-                                                item.markerId.value)) {
-                                              ListModel.items.add(
-                                                  PlacesModel.getById(int.parse(
-                                                      item.markerId.value)));
-                                            }
-                                          }
-                                        } catch (e) {
+                                        if (_originController.text.isEmpty &&
+                                            _destinationController
+                                                .text.isEmpty) {
+                                          final errorSnackBar = SnackBar(
+                                              content: Text(
+                                                  "Please mention the locations"));
                                           ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                      "Please first press search button")));
-                                        }
+                                              .showSnackBar(errorSnackBar);
+                                        } else {
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
 
-                                        setState(() {
-                                          _isLoading = 0;
-                                        });
+                                          setState(() {
+                                            _isLoading = 1;
+                                          });
+
+                                          if (_locations.isNotEmpty) {
+                                            ListModel.items.clear();
+                                            _locations.clear();
+                                          }
+
+                                          var directions =
+                                              await LocationService()
+                                                  .getDirections(
+                                                      _originController.text,
+                                                      _destinationController
+                                                          .text);
+
+                                          _goToThePlace(
+                                            directions['start_location']['lat'],
+                                            directions['start_location']['lng'],
+                                            directions['bounds_ne'],
+                                            directions['bounds_sw'],
+                                          );
+
+                                          _setPolyline(
+                                              directions['polyline_decoded'],
+                                              LatLng(
+                                                  directions['end_location']
+                                                      ['lat'],
+                                                  directions['end_location']
+                                                      ['lng']));
+
+                                          try {
+                                            await addLocations();
+                                            for (var item in _locations) {
+                                              if (isNumeric(
+                                                  item.markerId.value)) {
+                                                ListModel.items.add(PlacesModel
+                                                    .getById(int.parse(
+                                                        item.markerId.value)));
+                                              }
+                                            }
+                                          } catch (e) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        "Please first press search button")));
+                                          }
+                                          
+                                          FocusScope.of(context).unfocus();
+
+                                          setState(() {
+                                            _isLoading = 0;
+                                          });
+                                        }
                                       },
                                       child: Text(
                                         "Search",

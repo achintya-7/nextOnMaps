@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nextonmaps/pages/HomePage.dart';
 import 'package:nextonmaps/pages/MapPage.dart';
+import 'package:nextonmaps/pages/PhoneAuth2.dart';
 import 'package:nextonmaps/pages/SignInPage.dart';
 import 'package:nextonmaps/services/Auth_Service.dart';
 
@@ -19,28 +23,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Widget currentPage = const MapSampleTwo();
   AuthClass authClass = AuthClass();
+  late StreamSubscription<User?> user;
 
   @override
   void initState() {
-    checkLogin();
     super.initState();
+    user = FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user != null) {
+        print('User is signed in!');
+      } else {
+        print('User is signed out!');
+      }
+    });
   }
 
-  void checkLogin() async {
-    String? token = await authClass.getToken();
-    if (token != null) {
-      setState(() {
-        currentPage = const MapSampleTwo();
-      });
-    }
+  @override
+  void dispose() {
+    user.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: currentPage,
+      home: FirebaseAuth.instance.currentUser == null ? const SignInPage() : const HomePage(),
     );
   }
 }

@@ -11,6 +11,8 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String message =
+        "Images will be added here when provided in a slider view \n\n The link currently only redirects to one place as the links in excel sheet are not working properly all the time. The way I have added the link seems to be working fine 100% of the time \n\n We will have to add the links to the data in a different way";
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
@@ -61,6 +63,10 @@ class DetailsPage extends StatelessWidget {
               ),
             ),
             Align(
+              alignment: Alignment.center,
+              child: Text(message).p(8),
+            ),
+            Align(
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                   style: ButtonStyle(
@@ -79,12 +85,12 @@ class DetailsPage extends StatelessWidget {
                               side: const BorderSide(
                                   color: Colors.black, width: 3)))),
                   onPressed: () async {
-                    final urlOpen = "comgooglemaps://?daddr=${Uri.encodeFull(item.link)}&directionsmode=driving";
+                    const urlOpen = "https://g.co/kgs/8v65s1";
                     try {
-                      if (await canLaunch(urlOpen)) {
+                      if (await canLaunch(item.link)) {
                         await launch(
-                          urlOpen,
-                          forceWebView: true,
+                          item.link,
+                          forceWebView: false,
                           enableJavaScript: true,
                         );
                       }
@@ -106,4 +112,3 @@ class DetailsPage extends StatelessWidget {
         ));
   }
 }
-

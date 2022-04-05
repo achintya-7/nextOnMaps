@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nextonmaps/models/monuments.dart';
 import 'package:nextonmaps/pages/MapPage.dart';
@@ -107,10 +109,9 @@ class HomePage extends StatelessWidget {
               child: const Text(
                 "Search For Washrooms",
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-                ),
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ).pOnly(bottom: 48)

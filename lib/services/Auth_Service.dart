@@ -6,6 +6,7 @@ import 'package:nextonmaps/pages/HomePage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthClass {
+
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
@@ -115,6 +116,7 @@ class AuthClass {
           await _auth.signInWithCredential(credential);
 
       storeToken(userCredential);
+
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (builder) => HomePage()),

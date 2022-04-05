@@ -20,57 +20,57 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: const Text("Next On Maps",
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.black,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/Bikaner.jpg"),
-            )
-          ),
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.08),
-              Text(
-                "Sign In",
-                style: TextStyle(
-                  fontSize: 35,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/Bikaner.jpg"),
+            fit: BoxFit.cover
+          )
+        ),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+            Text(
+              "Sign In",
+              style: TextStyle(
+                fontSize: 35,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(
-                height: 20,
-              ),
-              ButtonItem(
-                imagePath: "assets/images/google.svg",
-                text: "Continue with Google",
-                size: 25,
-                onClick: () async {
-                  await authClass.googleSignIn(context);
-                },
-              ),
-              ButtonItem(
-                imagePath: "assets/images/phone.svg",
-                text: "Continue with Phone",
-                size: 25,
-                onClick: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (builder) => PhoneAuth()),
-                  );
-                },
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ButtonItem(
+              imagePath: "assets/images/google.svg",
+              text: "Continue with Google",
+              size: 25,
+              onClick: () async {
+                await authClass.googleSignIn(context);
+              },
+            ),
+            ButtonItem(
+              imagePath: "assets/images/phone.svg",
+              text: "Continue with Phone",
+              size: 25,
+              onClick: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (builder) => PhoneAuth()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
