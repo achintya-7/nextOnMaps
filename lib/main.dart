@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FirebaseAuth.instance.currentUser == null ? const SignInPage() : const HomePage(),
+      home: FirebaseAuth.instance.currentUser == null ? const HomePage() : const HomePage(),
     );
   }
 }
