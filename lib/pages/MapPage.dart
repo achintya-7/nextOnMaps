@@ -8,6 +8,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nextonmaps/pages/DetailsPage.dart';
+import 'package:nextonmaps/themes.dart';
 import 'package:nextonmaps/widgets/item_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:nextonmaps/location_service.dart';
@@ -156,56 +157,61 @@ class MapSampleTwoState extends State<MapSampleTwo> {
               backgroundColor: Colors.black,
             ),
             body: SafeArea(
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 3),
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/Travel.jpg"),
-                              fit: BoxFit.cover)),
+              child: Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background_1.jpg"),
+                      fit: BoxFit.cover
+                  )
+                ),
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
                       child: SizedBox(
-                        height: 200,
-                        width: 400,
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        width: MediaQuery.of(context).size.width,
                         child: Row(
                           children: [
                             Expanded(
                               child: Column(
                                 children: [
                                   SizedBox(
-                                    height: 8,
+                                    height: 14,
                                   ),
                                   TextFormField(
                                     controller: _originController,
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: 18,
                                     ),
                                     textCapitalization:
                                         TextCapitalization.words,
                                     decoration: InputDecoration(
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        border: InputBorder.none,
-                                        hintText: "Origin",
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3, color: Colors.black),
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(32),
-                                                bottomRight:
-                                                    Radius.circular(32))),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3, color: Colors.black),
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(32),
-                                                bottomRight:
-                                                    Radius.circular(32)))),
-                                  ).pOnly(right: 64),
+                                      hintStyle: TextStyle(
+                                        color: Colors.white54
+                                      ),
+                                      fillColor: Mytheme.darkcreamColor,
+                                      filled: true,
+                                      border: InputBorder.none,
+                                      hintText: "Origin",
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3, color: Colors.white),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(32),
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3, color: Colors.white),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(32),
+                                          )),
+                                    ),
+                                  ).pOnly(right: 24, left: 24),
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -213,36 +219,38 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                     key: _formKey,
                                     controller: _destinationController,
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: 18,
                                     ),
                                     textCapitalization:
-                                        TextCapitalization.words,
+                                        TextCapitalization.sentences,
                                     decoration: InputDecoration(
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        border: InputBorder.none,
-                                        hintText: "Destination",
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3, color: Colors.black),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(32),
-                                                bottomLeft:
-                                                    Radius.circular(32))),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                width: 3, color: Colors.black),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(32),
-                                                bottomLeft:
-                                                    Radius.circular(32)))),
+                                      fillColor: Mytheme.darkcreamColor,
+                                      hintStyle: TextStyle(
+                                        color: Colors.white54,
+                                      ),
+                                      filled: true,
+                                      border: InputBorder.none,
+                                      hintText: "Destination",
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3, color: Colors.white),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(32),
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 3, color: Colors.white),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(32),
+                                          )),
+                                    ),
                                     validator: (title) =>
                                         title != null && title.isEmpty
                                             ? 'Cannot be empty'
                                             : null,
-                                  ).pOnly(left: 64),
+                                  ).pOnly(right: 24 ,left: 24),
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -250,7 +258,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                     width: 100,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(32),
-                                      color: Colors.white,
+                                      color: Colors.transparent,
                                       shape: BoxShape.rectangle,
                                     ),
                                     child: ElevatedButton(
@@ -270,15 +278,15 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                               const Size(250, 50)),
                                           backgroundColor:
                                               MaterialStateProperty.all(
-                                                  Colors.white),
+                                                  Mytheme.darkcreamColor),
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(32),
                                                   side: const BorderSide(
-                                                      color: Colors.black,
-                                                      width: 3)))),
+                                                      color: Colors.white,
+                                                      width: 2)))),
                                       onPressed: () async {
                                         if (_originController.text.isEmpty &&
                                             _destinationController
@@ -339,7 +347,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                                     content: Text(
                                                         "Please first press search button")));
                                           }
-                                          
+
                                           FocusScope.of(context).unfocus();
 
                                           setState(() {
@@ -350,7 +358,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                       child: Text(
                                         "Search",
                                         style: TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -363,38 +371,37 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    child: ListModel.items.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: ListModel.items.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                child: ItemWidget(item: ListModel.items[index]),
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetailsPage(
-                                          item: ListModel.items[index])));
-                                },
-                              );
-                            },
-                          )
-                        : _isLoading == 1
-                            ? Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black, width: 3),
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/indiaHigh.png"),
-                                        fit: BoxFit.cover)),
-                              ),
-                  ))
-                ],
+                    Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent
+                          ),
+                          child: ListModel.items.isNotEmpty
+                              ? ListView.builder(
+                                  itemCount: ListModel.items.length,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      child: ItemWidget(item: ListModel.items[index]),
+                                      onTap: () {
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (context) => DetailsPage(
+                                                item: ListModel.items[index])));
+                                      },
+                                    );
+                                  },
+                                )
+                              : _isLoading == 1
+                                  ? Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent
+                                      ),
+                                    ),
+                    ))
+                  ],
+                ),
               ),
             )));
   }
