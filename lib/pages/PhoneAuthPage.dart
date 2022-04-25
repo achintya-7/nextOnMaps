@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-import 'dart:async';
+// ignore_for_file: prefer_const_constructors, avoid_print
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nextonmaps/pages/HomePage.dart';
-import 'package:nextonmaps/services/Auth_Service.dart';
 import 'package:pinput/pinput.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -22,18 +20,15 @@ class _PhoneAuthState extends State<PhoneAuth> {
   final snackBar2 =
       SnackBar(content: Text("Please enter a 10 digit Phone Number"));
   final snackBar3 = SnackBar(content: Text("Please enter a 6 digit OTP pin"));
-  late Timer timer;
-  int start = 30;
-  late String _verificationCode;
   String? verificationCode;
   final TextEditingController _pinOTPCodeController = TextEditingController();
   final FocusNode _pinOTPCodeFocus = FocusNode();
   bool wait = false;
   String buttonName = "Send";
-  AuthClass authClass = AuthClass();
   String verificationIDFinal = "";
   String smsCode = "";
   final TextEditingController _phoneNumber = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   final BoxDecoration pinOTPCodeDecoration = BoxDecoration(
       color: Colors.black,
@@ -61,7 +56,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
               SizedBox(height: 150),
               textField(),
               SizedBox(height: 20),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Row(
                   children: [
@@ -90,45 +85,62 @@ class _PhoneAuthState extends State<PhoneAuth> {
               SizedBox(
                 height: 40,
               ),
-              RichText(
-                  text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Send OTP again in ",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                  TextSpan(
-                    text: "00:$start",
-                    style: TextStyle(fontSize: 16, color: Colors.red),
-                  ),
-                  TextSpan(
-                    text: " sec ",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                ],
-              )),
               SizedBox(
                 height: 150,
               ),
-              InkWell(
-                onTap: () {
-                  if (pinNumber.length < 6) {}
+              ElevatedButton(
+                style: ButtonStyle(
+                    enableFeedback: true,
+                    elevation: MaterialStateProperty.all(8),
+                    overlayColor: MaterialStateProperty.resolveWith((states) {
+                      return states.contains(MaterialState.pressed)
+                          ? Colors.grey
+                          : null;
+                    }),
+                    fixedSize: MaterialStateProperty.all(const Size(280, 50)),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                            side: const BorderSide(
+                                color: Colors.black, width: 3)))),
+                onPressed: () async {
+                  await verifyCode();
+                  // if (pinNumber.length == 6) {
+                  //   smsCode = pinNumber;
+                  //   //     try {
+                  //   //       await auth
+                  //   //           .signInWithCredential(PhoneAuthProvider.credential(
+                  //   //               verificationId: verificationIDFinal,
+                  //   //               smsCode: smsCode))
+                  //   //           .then((value) async {
+                  //   //         if (value.user != null) {
+                  //   //           print("Pass to home");
+
+                  //   //           // await storage.write(key: "OtpSignIn", value: "True");
+
+                  //   //           Navigator.pushAndRemoveUntil(
+                  //   //               context,
+                  //   //               MaterialPageRoute(
+                  //   //                   builder: (builder) => HomePage()),
+                  //   //               (route) => false);
+                  //   //         }
+                  //   //       });
+                  //   //     } catch (e) {
+                  //   //       FocusScope.of(context).unfocus();
+                  //   //       final snackBar = SnackBar(content: Text(e.toString()));
+                  //   //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  //   //     }
+                  //   //     // authClass.signInWithPhoneNumber(
+                  //   //     //     verificationIDFinal, smsCode, context);
+                  // }
                 },
-                child: Container(
-                  height: 60,
-                  width: MediaQuery.of(context).size.width - 60,
-                  decoration: BoxDecoration(
-                      color: Color(0xffff9601),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Center(
-                    child: Text(
-                      "Lets Go",
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
+                child: const Text(
+                  "Sign In",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                 ),
               )
             ],
@@ -139,17 +151,16 @@ class _PhoneAuthState extends State<PhoneAuth> {
   }
 
   verifyPhone() async {
-    await FirebaseAuth.instance.verifyPhoneNumber(
+    await auth.verifyPhoneNumber(
         phoneNumber: "+91${_phoneNumber.text}",
         verificationCompleted: (PhoneAuthCredential credential) async {
-          await FirebaseAuth.instance
-              .signInWithCredential(credential)
-              .then((value) async {
+          await auth.signInWithCredential(credential).then((value) async {
             if (value.user != null) {
               print("user logged in");
             }
+            // print("You are logged in Succesfully");
           });
-          final verifySnackBar = SnackBar(content: Text("Phone Verified"));
+          final verifySnackBar = SnackBar(content: Text("OTP Sent"));
           ScaffoldMessenger.of(context).showSnackBar(verifySnackBar);
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -157,15 +168,44 @@ class _PhoneAuthState extends State<PhoneAuth> {
         },
         codeSent: (String verificationID, int? resendToken) {
           setState(() {
-            _verificationCode = verificationID;
+            verificationIDFinal = verificationID;
           });
         },
         codeAutoRetrievalTimeout: (String verificationID) {
           setState(() {
-            _verificationCode = verificationID;
+            verificationIDFinal = verificationID;
           });
         },
         timeout: Duration(seconds: 90));
+  }
+
+  verifyCode() async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationIDFinal, smsCode: pinNumber.toString());
+
+    if (pinNumber.length == 6) {
+      try {
+        await auth.signInWithCredential(credential).then((value) async {
+          if (value.user != null) {
+            print("Pass to home");
+
+            await storage.write(key: "OtpSignIn", value: "True");
+
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (builder) => HomePage()),
+                (route) => false);
+          }
+        });
+      } catch (e) {
+        print("\n" + e.toString() + "\n");
+        FocusScope.of(context).unfocus();
+        final snackBar = SnackBar(content: Text("Invalid OTP, try again"));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar3);
+    }
   }
 
   Widget otpField2() {
@@ -178,31 +218,6 @@ class _PhoneAuthState extends State<PhoneAuth> {
       onChanged: (pin) {
         setState(() {
           pinNumber = pin;
-        });
-      },
-      onSubmitted: (pin) async {
-        setState(() async {
-          smsCode = pin;
-          try {
-            await FirebaseAuth.instance
-                .signInWithCredential(PhoneAuthProvider.credential(
-                    verificationId: _verificationCode, smsCode: smsCode))
-                .then((value) async {
-              if (value.user != null) {
-                print("Pass to home");
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (builder) => HomePage()),
-                    (route) => false);
-              }
-            });
-          } catch (e) {
-            FocusScope.of(context).unfocus();
-            final snackBar = SnackBar(content: Text("Invalid OTP"));
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          }
-          // authClass.signInWithPhoneNumber(
-          //     verificationIDFinal, smsCode, context);
         });
       },
     ).pOnly(left: 8, right: 8);
@@ -229,8 +244,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
             suffixIcon: InkWell(
               splashColor: Colors.black,
               onTap: () async {
-
-                if (_phoneNumber.text.length < 10) {
+                if (_phoneNumber.text.length != 10) {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar2);
                 } else {
                   await verifyPhone();
@@ -239,17 +253,6 @@ class _PhoneAuthState extends State<PhoneAuth> {
                   buttonName = "Sent";
                 });
               },
-              // wait
-              //     ? null
-              //     : () async {
-              //         setState(() {
-              //           start = 30;
-              //           wait = true;
-              //           buttonName = "Se";
-              //         });
-              //         await authClass.verifyPhoneNumber(
-              //             "+91 ${_phoneNumber.text}", context, setData);
-              //       },
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
@@ -276,11 +279,5 @@ class _PhoneAuthState extends State<PhoneAuth> {
                 borderRadius: BorderRadius.all(Radius.circular(32)))),
       ).pOnly(left: 12, right: 12),
     );
-  }
-
-  void setData(String verificationID) {
-    setState(() {
-      verificationIDFinal = verificationID;
-    });
   }
 }

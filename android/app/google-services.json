@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "516300322878",
-    "project_id": "nextonmaps",
-    "storage_bucket": "nextonmaps.appspot.com"
+    "project_number": "481442431542",
+    "project_id": "travelapp-343011",
+    "storage_bucket": "travelapp-343011.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:516300322878:android:493f6c64cf72b1cbd6396f",
+        "mobilesdk_app_id": "1:481442431542:android:1c9533e04c024ff0864e97",
         "android_client_info": {
           "package_name": "com.example.nextonmaps"
         }
       },
       "oauth_client": [
         {
-          "client_id": "516300322878-91fbukfii894f07avt1mrnrjgi2ma2h4.apps.googleusercontent.com",
+          "client_id": "481442431542-62b57tapl2ej64bi2msinnhgi9juc5vv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.nextonmaps",
-            "certificate_hash": "80623bc7d9de7452e95a13f04d1cd54e627a6d3e"
+            "certificate_hash": "5076c4362db72679b1720e03cdae018d4bf176bb"
           }
         },
         {
-          "client_id": "516300322878-3o5joriokef0lvr5ramd8qvj6v21fj8b.apps.googleusercontent.com",
+          "client_id": "481442431542-ah0l3lcd6co8u4aai5igsva73shfc96j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD8Y4zKd4cNOSHh14Ec03xr6vlSpb3IH8o"
+          "current_key": "AIzaSyBSV112p1df8oVkVyllGA1rcPbkWFg221E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "516300322878-3o5joriokef0lvr5ramd8qvj6v21fj8b.apps.googleusercontent.com",
+              "client_id": "481442431542-ah0l3lcd6co8u4aai5igsva73shfc96j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

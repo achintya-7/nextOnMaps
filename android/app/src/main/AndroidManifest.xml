@@ -11,7 +11,7 @@
         </intent>
     </queries>
    <application
-        android:label="nextonmaps"
+        android:label="Next On Maps"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

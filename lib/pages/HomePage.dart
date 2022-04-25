@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nextonmaps/models/monuments.dart';
 import 'package:nextonmaps/pages/MapPage.dart';
 import 'package:velocity_x/velocity_x.dart';

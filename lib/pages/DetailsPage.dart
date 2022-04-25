@@ -34,30 +34,30 @@ class DetailsPage extends StatelessWidget {
                 children: [
                   Container(
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white54,
                   ).p(8),
                   Text(
                     item.name,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontSize: 25,
-                        color: Colors.black,
+                        fontSize: 28,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ).p(8),
                   Container(
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white54,
                   ).p(8),
                   Text(item.address,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
+                              fontSize: 22,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold))
                       .p(8),
                   Container(
                     height: 1,
-                    color: Colors.black,
+                    color: Colors.white54,
                   ).p(8),
                 ],
               ).centered(),
@@ -103,7 +103,7 @@ class DetailsPage extends StatelessWidget {
                         print(item.link);
                       },
                       child: Text(
-                        "Go to URL Page",
+                        "Get Directions",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,

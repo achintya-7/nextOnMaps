@@ -1,94 +1,175 @@
 {
   "places": [
-    {
-      "id": 1,
-      "name": "Neelkanth Star Dhabha",
-      "phone": 9812700002,
-      "address": "NH 44, Gharunda, Kutail, Haryana 132114",
-      "latitude": 29.6032044,
-      "longitude": 76.9744683,
-      "link": "https://g.page/neelkanthstar?share"
-    },
-    {
-      "id": 2,
-      "name": "70 Milestone Restaurant and Dhabha",
-      "phone": 7357300070,
-      "address": "Opposite Gandhi Smark Ashram , Pattikalyana, Grand Trunk Rd, Panipat, Haryana 132102",
-      "latitude": 29.2138119,
-      "longitude": 77.018903,
-      "link": "https://g.co/kgs/uVpXkp"
-    },
-    {
-      "id": 3,
-      "name": "Cheetal Grand",
-      "phone": 9873043523,
-      "address": "Khatauli Bypass, NH334, Khatauli, Uttar Pradesh 251201",
-      "latitude": 29.2440173,
-      "longitude": 77.722358,
-      "link": "https://g.co/kgs/ejEvgf"
-    },
-    {
-      "id": 4,
-      "name": "Desi Handi Vala",
-      "phone": 9027335150,
-      "address": "NH 58 NEAR ROHAN MARBLE, opposite GRAND RISALA, Kanker Khera, Meerut, Uttar Pradesh 250001",
-      "latitude": 29.0378978,
-      "longitude": 77.6782325,
-      "link": "https://g.co/kgs/7cZ1xx"
-    },
-    {
-      "id": 5,
-      "name": "Doab Villas",
-      "phone": 9761866666,
-      "address": "Meerut Bypass Rd, Sector - 3, Ansal's Sushant City, Meerut, Uttar Pradesh 250103",
-      "latitude": 28.9391833,
-      "longitude": 77.638183,
-      "link": "https://g.co/kgs/CTySJm"
-    },
-    {
-      "id": 6,
-      "name": "Fun and Food Carnival",
-      "phone": 7455804480,
-      "address": "NH 58, Khatauli Bypass, Bhainsi, Uttar Pradesh 251201",
-      "latitude": 29.3098385,
-      "longitude": 77.7207178,
-      "link": "https://g.co/kgs/MpJj9U"
-    },
-    {
-      "id": 7,
-      "name": "Live Pizzà Plànet Càfe",
-      "phone": 9417046848,
-      "address": "NH1, Near SPN Hospital, Mukerian, Punjab 144211",
-      "latitude": 31.938025,
-      "longitude": 75.6160108,
-      "link": "https://g.co/kgs/n6BR4f"
-    },
-    {
-      "id": 8,
-      "name": "Gracias",
-      "phone": 9854305151,
-      "address": "G.T Road, Paragpur, adjacent Connect Office, Jalandhar, Punjab 144001",
-      "latitude": 31.2944077,
-      "longitude": 75.6516725,
-      "link": "https://g.co/kgs/mAvt1z"
-    },
-    {
-      "id": 9,
-      "name": "Red Mango-Grand Pearl",
-      "phone": 9876511993,
-      "address": "Grand Trunk Rd, Sahnewal, Punjab 141120",
-      "latitude": 30.8209787,
-      "longitude": 75.9924149,
-      "link": "https://g.co/kgs/8v65s1"
-    },
-    {
-      "id": 10,
-      "name": "The Urban Village",
-      "phone": 9681600006,
-      "address": "101st Milestone Village Kohand, Gharaunda, Haryana 132114",
-      "latitude": 29.487674,
-      "longitude": 76.9700283,
-      "link": "https://g.co/kgs/oXzHBA"
-    }
+  {
+    "id": 1,
+    "name": "Neelkanth Star Dhabha",
+    "phone": 9812700002,
+    "address": "NH 44, Gharunda, Kutail, Haryana 132114",
+    "latitude": 29.6032044,
+    "longitude": 76.9744683,
+    "link": "https:\/\/g.page\/neelkanthstar?share"
+  },
+  {
+    "id": 2,
+    "name": "70 Milestone Restaurant and Dhabha",
+    "phone": 7357300070,
+    "address": "Opposite Gandhi Smark Ashram , Pattikalyana, Grand Trunk Rd, Panipat, Haryana 132102",
+    "latitude": 29.2138119,
+    "longitude": 77.018903,
+    "link": "https:\/\/g.co\/kgs\/uVpXkp"
+  },
+  {
+    "id": 3,
+    "name": "Cheetal Grand",
+    "phone": 9873043523,
+    "address": "Khatauli Bypass, NH334, Khatauli, Uttar Pradesh 251201",
+    "latitude": 29.2440173,
+    "longitude": 77.722358,
+    "link": "https:\/\/g.co\/kgs\/ejEvgf"
+  },
+  {
+    "id": 4,
+    "name": "Desi Handi Vala",
+    "phone": 9027335150,
+    "address": "NH 58 NEAR ROHAN MARBLE, opposite GRAND RISALA, Kanker Khera, Meerut, Uttar Pradesh 250001",
+    "latitude": 29.0378978,
+    "longitude": 77.67823250000001,
+    "link": "https:\/\/g.co\/kgs\/7cZ1xx"
+  },
+  {
+    "id": 5,
+    "name": "Doab Villas",
+    "phone": 9761866666,
+    "address": "Meerut Bypass Rd, Sector - 3, Ansal's Sushant City, Meerut, Uttar Pradesh 250103",
+    "latitude": 28.9391833,
+    "longitude": 77.638183,
+    "link": "https://goo.gl/maps/CeCoJmjaDQQptbDF9"
+  },
+  {
+    "id": 6,
+    "name": "Fun and Food Carnival",
+    "phone": 7455804480,
+    "address": "NH 58, Khatauli Bypass, Bhainsi, Uttar Pradesh 251201",
+    "latitude": 29.3098385,
+    "longitude": 77.7207178,
+    "link": "https:\/\/g.co\/kgs\/MpJj9U"
+  },
+  {
+    "id": 7,
+    "name": "Live Pizzà Plànet Càfe",
+    "phone": 9417046848,
+    "address": "NH1, Near SPN Hospital, Mukerian, Punjab 144211",
+    "latitude": 31.938025,
+    "longitude": 75.6160108,
+    "link": "https:\/\/g.co\/kgs\/n6BR4f"
+  },
+  {
+    "id": 8,
+    "name": "Gracias",
+    "phone": 9854305151,
+    "address": "G.T Road, Paragpur, adjacent Connect Office, Jalandhar, Punjab 144001",
+    "latitude": 31.2944077,
+    "longitude": 75.6516725,
+    "link": "https:\/\/g.co\/kgs\/mAvt1z"
+  },
+  {
+    "id": 9,
+    "name": "Red Mango-Grand Pearl",
+    "phone": 9876511993,
+    "address": "Grand Trunk Rd, Sahnewal, Punjab 141120",
+    "latitude": 30.8209787,
+    "longitude": 75.9924149,
+    "link": "https:\/\/g.co\/kgs\/8v65s1"
+  },
+  {
+    "id": 10,
+    "name": "The Urban Village",
+    "phone": 9681600006,
+    "address": "101st Milestone Village Kohand, Gharaunda, Haryana 132114",
+    "latitude": 29.487674,
+    "longitude": 76.9700283,
+    "link": "https:\/\/g.co\/kgs\/oXzHBA"
+  },
+  {
+    "id": 11,
+    "name": "Ketli Cafe",
+    "phone": 8805916597,
+    "address": "Shop No :- 14 Ark Residency, Kankar Khera, Shradhapuri Phase 2, Meerut, Uttar Pradesh 250001",
+    "latitude": 29.1592262,
+    "longitude": 77.4754663,
+    "link": "https:\/\/g.page\/ketli-the-cafe?share"
+  },
+  {
+    "id": 12,
+    "name": "Meera Bistro",
+    "phone": 8191999560,
+    "address": "NH#58, Meerut Bypass Rd, Kanker Khera, Meerut, Uttar Pradesh 250001",
+    "latitude": 28.7991398,
+    "longitude": 77.1825419,
+    "link": "https://g.co/kgs/KuRRVH"
+  },
+  {
+    "id": 13,
+    "name": "Hungry Point",
+    "phone": 9854260009,
+    "address": "Mata Rani Chowk, Pathankot - Jalandhar Rd, Mukerian, Punjab 144211",
+    "latitude": 31.4150101,
+    "longitude": 75.005333,
+    "link": "https:\/\/g.page\/hungry-point-mukerian?share"
+  },
+  {
+    "id": 14,
+    "name": "Basant Dhabha",
+    "phone": 9136501120,
+    "address": "Plot No 1 , shikohpur more Main NH 8, Sector 78, Gurugram, Haryana 122004",
+    "latitude": 28.494652,
+    "longitude": 76.9699435,
+    "link": "https:\/\/g.page\/basant-dhaba?share"
+  },
+  {
+    "id": 15,
+    "name": "Hotel Highway Express",
+    "phone": 7230012200,
+    "address": "National Highway 8, Delhi - Jaipur Expy, Behror, Rajasthan 301701",
+    "latitude": 28.21639,
+    "longitude": 76.1994077,
+    "link": "https:\/\/g.page\/ExpressHotel?share"
+  },
+  {
+    "id": 16,
+    "name": "Hotel Highway Prince",
+    "phone": "73000 71444",
+    "address": "126, Mehrampur Nawab, N.H.8, Delhi - Jaipur Expy, near Paota, Kotputli, Rajasthan 303108",
+    "latitude": 28.21639,
+    "longitude": 76.1994077,
+    "link": "https:\/\/goo.gl\/maps\/2AEx4yZcTJZoV2Cs5"
+  },
+  {
+    "id": 17,
+    "name": "Old Rao Hotel",
+    "phone": 7240001421,
+    "address": "1541, Paota, Rajasthan 303102",
+    "latitude": 27.5197428,
+    "longitude": 76.0587172,
+    "link": "https:\/\/g.page\/oldraohotelpaota?share"
+  },
+  {
+    "id": 18,
+    "name": "Hotel Highway King",
+    "phone": 9828338100,
+    "address": "Main Delhi Jaipur Highway NH-8 185 Milestone From Delhi Near Paota Village Antela, Shahpura, Rajasthan 303119",
+    "latitude": 27.4870022,
+    "longitude": 76.0501418,
+    "link": "https://g.co/kgs/Y688Ji"
+  },
+  {
+    "id": 19,
+    "name": "Jalpan Restaurant",
+    "phone": 8750062112,
+    "address": "Bus stop, NH 58, near subhart university, Meerut, Uttar Pradesh 250002",
+    "latitude": 28.9618989,
+    "longitude": 77.6377421,
+    "link": "https://g.co/kgs/ZbJGis"
+  }
   ]
 }

@@ -3,13 +3,11 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nextonmaps/pages/HomePage.dart';
-import 'package:nextonmaps/pages/MapPage.dart';
-import 'package:nextonmaps/pages/PhoneAuth2.dart';
 import 'package:nextonmaps/pages/SignInPage.dart';
 import 'package:nextonmaps/services/Auth_Service.dart';
-import 'package:nextonmaps/themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,17 +25,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AuthClass authClass = AuthClass();
   late StreamSubscription<User?> user;
+  final storage = new FlutterSecureStorage();
+  late bool isSignIn;
 
   @override
   void initState() {
     super.initState();
-    user = FirebaseAuth.instance.authStateChanges().listen((user) {
-      if (user != null) {
-        print('User is signed in!');
-      } else {
-        print('User is signed out!');
-      }
-    });
+
+    // user = FirebaseAuth.instance.authStateChanges().listen((user) {
+    //   if (user != null) {
+    //     print("User Signed In");
+    //   } else {
+    //     print("User NOT signed in");
+    //   }
+    // });
+
+    if (readVerification() == null ||
+        FirebaseAuth.instance.currentUser == null) {
+      isSignIn = false;
+      print("signed out");
+    } else {
+      isSignIn = true;
+      print("signed in");
+    }
   }
 
   @override
@@ -50,12 +60,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(  
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context).textTheme
-        )
-      ),
-      home: FirebaseAuth.instance.currentUser == null ? const HomePage() : const HomePage(),
+      // home: const SignInPage(),
+      home: isSignIn ? const SignInPage() : const SignInPage(),
     );
+  }
+
+  Future<String?> readVerification() async {
+    String? val = await storage.read(key: "OtpSignIn");
+    return val;
   }
 }
