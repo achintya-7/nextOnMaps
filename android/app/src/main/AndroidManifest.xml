@@ -11,7 +11,7 @@
         </intent>
     </queries>
    <application
-        android:label="Next On Maps"
+        android:label="Next On Map"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -40,5 +40,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5074440068044295~1821272964" />
+
     </application>
 </manifest>
