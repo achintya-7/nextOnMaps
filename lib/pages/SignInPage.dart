@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:nextonmaps/pages/HomePage.dart';
 import 'package:nextonmaps/pages/PhoneAuthPage.dart';
+import 'package:nextonmaps/pages/PrivacyPage.dart';
 import 'package:nextonmaps/services/Auth_Service.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nextonmaps/widgets/ButtonItems.dart';
@@ -76,8 +77,8 @@ class _SignInPageState extends State<SignInPage> {
                 style: TextStyle(color: Colors.white, fontSize: 12),
               ),
               onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (builder) => PrivacyPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => PrivacyPage()));
               },
             ).pOnly(bottom: 15).centered()
           ],
