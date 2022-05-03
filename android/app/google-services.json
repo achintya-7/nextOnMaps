@@ -14,11 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "481442431542-62b57tapl2ej64bi2msinnhgi9juc5vv.apps.googleusercontent.com",
+          "client_id": "481442431542-lp91j3f9tjnjg6bi392bmpr1olh4kssc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.nextonmaps",
-            "certificate_hash": "5076c4362db72679b1720e03cdae018d4bf176bb"
+            "certificate_hash": "6289efcd4175ab34fc03b95876c1466874255319"
+          }
+        },
+        {
+          "client_id": "481442431542-td9qpsme130n69r78jafd19f5m2uqvs1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nextonmaps",
+            "certificate_hash": "6ab7f0b967bfb7230fc788f6bb10048a475157d6"
           }
         },
         {

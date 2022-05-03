@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:nextonmaps/pages/HomePage.dart';
-import 'package:nextonmaps/pages/MapPage.dart';
 import 'package:nextonmaps/pages/SignInPage.dart';
 import 'package:nextonmaps/services/Auth_Service.dart';
 
@@ -33,7 +32,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AuthClass authClass = AuthClass();
   late StreamSubscription<User?> user;
-  final storage = new FlutterSecureStorage();
+  // final storage = new FlutterSecureStorage();
   late bool isSignIn;
   List<String> testDevices = ['CAF14E87AAF593178862481BDD790971'];
 
@@ -41,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    if (readVerification() == null ||
+    if (// readVerification() == null ||
         FirebaseAuth.instance.currentUser == null) {
       isSignIn = false;
       print("signed out");
@@ -59,15 +58,16 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_const_constructors
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: const SignInPage(),
-      home: isSignIn ? const MapSampleTwo() : const SignInPage(),
+      home: isSignIn ? const HomePage() : const SignInPage(),
     );
   }
 
-  Future<String?> readVerification() async {
-    String? val = await storage.read(key: "OtpSignIn");
-    return val;
-  }
+  // Future<String?> readVerification() async {
+  //   String? val = await storage.read(key: "OtpSignIn");
+  //   return val;
+  // }
 }

@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nextonmaps/pages/HomePage.dart';
 import 'package:pinput/pinput.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -14,7 +13,7 @@ class PhoneAuth extends StatefulWidget {
 }
 
 class _PhoneAuthState extends State<PhoneAuth> {
-  final storage = FlutterSecureStorage();
+  // final storage = FlutterSecureStorage();
   final snackBar = SnackBar(content: Text("Invalid OTP"));
   String pinNumber = "";
   final snackBar2 =
@@ -105,7 +104,9 @@ class _PhoneAuthState extends State<PhoneAuth> {
                             side: const BorderSide(
                                 color: Colors.black, width: 3)))),
                 onPressed: () async {
+
                   await verifyCode();
+
                   // if (pinNumber.length == 6) {
                   //   smsCode = pinNumber;
                   //   //     try {
@@ -157,10 +158,16 @@ class _PhoneAuthState extends State<PhoneAuth> {
           await auth.signInWithCredential(credential).then((value) async {
             if (value.user != null) {
               print("user logged in");
+              // await storage.write(key: "OtpSignIn", value: "True");
+
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => HomePage()),
+                  (route) => false);
             }
-            // print("You are logged in Succesfully");
           });
-          final verifySnackBar = SnackBar(content: Text("OTP Sent"));
+          final verifySnackBar = SnackBar(content: Text("OTP Verified"));
           ScaffoldMessenger.of(context).showSnackBar(verifySnackBar);
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -189,7 +196,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
           if (value.user != null) {
             print("Pass to home");
 
-            await storage.write(key: "OtpSignIn", value: "True");
+            // await storage.write(key: "OtpSignIn", value: "True");
 
             Navigator.pushAndRemoveUntil(
                 context,
@@ -247,6 +254,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
                 if (_phoneNumber.text.length != 10) {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar2);
                 } else {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   await verifyPhone();
                 }
                 setState(() {

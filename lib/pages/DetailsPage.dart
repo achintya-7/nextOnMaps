@@ -27,6 +27,7 @@ class DetailsPage extends StatelessWidget {
                     begin: Alignment.bottomRight,
                     end: Alignment.topLeft))
                 .make(),
+                
 
             Align(
               alignment: Alignment.topCenter,
