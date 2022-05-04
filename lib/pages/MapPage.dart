@@ -172,6 +172,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         home: Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -195,7 +196,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
               Align(
                 alignment: Alignment.topCenter,
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  height: 210.0,
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     children: [
