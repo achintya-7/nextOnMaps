@@ -14,6 +14,7 @@
         android:label="Next On Map"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCN1vZTrRJS6X2voqDLSHKyplmyXadI5Tc" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

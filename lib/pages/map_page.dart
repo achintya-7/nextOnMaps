@@ -40,6 +40,8 @@ class MapSampleTwoState extends State<MapSampleTwo> {
   late BannerAd _bannerAd;
   bool _isAdLoaded = false;
 
+  var directions;
+
   Item reference = Item(0, "", "0", "", 0, 0, "");
 
   bool isNumeric(String s) {
@@ -49,10 +51,6 @@ class MapSampleTwoState extends State<MapSampleTwo> {
     return true;
   }
 
-  static const CameraPosition _kGooglePlex = const CameraPosition(
-    target: LatLng(28.6139, 77.2090),
-    zoom: 14.4746,
-  );
 
   int _polylineCounter = 1;
   int _isLoading = -1;
@@ -268,10 +266,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
       ),
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/background_1.jpg"),
-                  fit: BoxFit.cover)),
+          color: const Color.fromARGB(255 ,1, 175, 210),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -305,13 +300,13 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                 hintText: "Origin",
                                 focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.white),
+                                        width: 3, color: Colors.red),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(32),
                                     )),
                                 enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.white),
+                                        width: 3, color: Colors.red),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(32),
                                     )),
@@ -339,13 +334,13 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                 hintText: "Destination",
                                 focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.white),
+                                        width: 3, color: Colors.yellow),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(32),
                                     )),
                                 enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        width: 3, color: Colors.white),
+                                        width: 3, color: Colors.yellow),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(32),
                                     )),
@@ -373,7 +368,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                             (states) {
                                       return states
                                               .contains(MaterialState.pressed)
-                                          ? Colors.grey
+                                          ? Colors.green
                                           : null;
                                     }),
                                     elevation: MaterialStateProperty.all(8),
@@ -387,8 +382,8 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                             borderRadius:
                                                 BorderRadius.circular(32),
                                             side: const BorderSide(
-                                                color: Colors.white,
-                                                width: 2)))),
+                                                color: Colors.green,
+                                                width: 3)))),
                                 onPressed: () async {
                                   if (_originController.text.isEmpty &&
                                       _destinationController.text.isEmpty) {
@@ -410,7 +405,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                                       _locations.clear();
                                     }
 
-                                    var directions = await LocationService()
+                                    directions = await LocationService()
                                         .getDirections(_originController.text,
                                             _destinationController.text);
 
@@ -466,9 +461,22 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                   ),
                 ),
               ),
+              Container(
+                height: 5,
+                color: Colors.black
+              ),
               Expanded(
                   child: Container(
-                decoration: const BoxDecoration(color: Colors.transparent),
+                decoration: const BoxDecoration(
+                  // decoration: const BoxDecoration(
+                        //     image: DecorationImage(
+                        //         image: AssetImage("assets/images/mapBackground.jpeg"),
+                        //         fit: BoxFit.cover)),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/mapBackground.jpeg'),
+                    fit: BoxFit.cover
+                  )
+                ),
                 child: ListModel.items.isNotEmpty
                     ? ListView.builder(
                         itemCount: ListModel.items.length,
@@ -478,7 +486,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => DetailsPage(
-                                      item: ListModel.items[index])));
+                                      item: ListModel.items[index], startLocation: directions['start_location'])));
                             },
                           );
                         },

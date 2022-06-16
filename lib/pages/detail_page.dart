@@ -1,16 +1,43 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nextonmaps/models/all_places.dart';
+import 'package:nextonmaps/services/map_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
+  final Map<String, dynamic> startLocation;
   final Item item;
-  const DetailsPage({Key? key, required this.item}) : super(key: key);
+
+  const DetailsPage({Key? key, required this.item, required this.startLocation})
+      : super(key: key);
 
   @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  @override
   Widget build(BuildContext context) {
+    GoogleMapController? _googleMapController;
+    LatLng _center = LatLng(widget.item.latitude, widget.item.longitude);
+    List<Marker> _markers = [
+      Marker(
+          markerId: const MarkerId('Start'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          position:
+              LatLng(widget.startLocation['lat'], widget.startLocation['lng']),
+          infoWindow: const InfoWindow(title: 'Start')),
+      Marker(
+          markerId: const MarkerId('Start'),
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          position: LatLng(widget.item.latitude, widget.item.longitude),
+          infoWindow:
+              InfoWindow(title: widget.item.name, snippet: widget.item.address))
+    ];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
@@ -20,45 +47,46 @@ class DetailsPage extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            VxAnimatedBox()
-                .size(context.screenWidth, context.screenHeight)
-                .withGradient(const LinearGradient(
-                    colors: [Color.fromARGB(255, 141, 31, 192), Color.fromARGB(255, 204, 63, 106)],
-                    begin: Alignment.bottomRight,
-                    end: Alignment.topLeft))
-                .make(),
-                
-
+            GoogleMap(
+              onMapCreated: (GoogleMapController controller) {
+                _googleMapController = _googleMapController;
+              },
+              markers: _markers.toSet(),
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 7.0,
+              ),
+            ),
             Align(
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
                   Container(
                     height: 1,
-                    color: Colors.white54,
+                    color: Colors.black,
                   ).p(8),
                   Text(
-                    item.name,
+                    widget.item.name,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 28,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ).p(8),
                   Container(
                     height: 1,
-                    color: Colors.white54,
+                    color: Colors.black,
                   ).p(8),
-                  Text(item.address,
+                  Text(widget.item.address,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 22,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold))
                       .p(8),
                   Container(
                     height: 1,
-                    color: Colors.white54,
+                    color: Colors.black,
                   ).p(8),
                 ],
               ).centered(),
@@ -91,9 +119,9 @@ class DetailsPage extends StatelessWidget {
                       onPressed: () async {
                         const urlOpen = "https://g.co/kgs/8v65s1";
                         try {
-                          if (await canLaunch(item.link)) {
+                          if (await canLaunch(widget.item.link)) {
                             await launch(
-                              item.link,
+                              widget.item.link,
                               forceWebView: false,
                               enableJavaScript: true,
                             );
@@ -101,7 +129,7 @@ class DetailsPage extends StatelessWidget {
                         } catch (e) {
                           print("Error : " + e.toString());
                         }
-                        print(item.link);
+                        print(widget.item.link);
                       },
                       child: const Text(
                         "Get Directions",
@@ -147,7 +175,7 @@ class DetailsPage extends StatelessWidget {
                       )),
                 ],
               ),
-            ).pOnly(bottom: MediaQuery.of(context).size.height * 0.1)
+            ).pOnly(bottom: 20)
           ],
         ));
   }
