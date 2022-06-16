@@ -43,4 +43,5 @@
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5074440068044295~1821272964" />
 
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

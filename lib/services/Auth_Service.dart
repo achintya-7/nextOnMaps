@@ -2,11 +2,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:nextonmaps/pages/HomePage.dart';
+import 'package:nextonmaps/pages/home_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthClass {
-
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
@@ -34,13 +33,15 @@ class AuthClass {
           UserCredential userCredential =
               await _auth.signInWithCredential(credential);
 
+          
+
           storeToken(userCredential);
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (builder) => HomePage()),
               (route) => false);
         } catch (e) {
-          final snackbar = SnackBar(content: Text(e.toString()));
+          final snackbar = SnackBar(content: Text('Something went wrong, Are you connected with the Internet?'));
           ScaffoldMessenger.of(context).showSnackBar(snackbar);
         }
       } else {
@@ -48,7 +49,8 @@ class AuthClass {
         ScaffoldMessenger.of(context).showSnackBar(snackbar);
       }
     } catch (e) {
-      final snackbar = SnackBar(content: Text(e.toString()));
+      final snackbar = SnackBar(content: Text(
+              'Something went wrong, Are you connected with the Internet?'));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
   }

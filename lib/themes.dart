@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -9,7 +11,7 @@ class Mytheme {
         canvasColor: darkcreamColor,
         buttonColor: purpleBluishColor,
         accentColor: Colors.white,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.white,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.white),
@@ -18,8 +20,8 @@ class Mytheme {
       );
 
   //Colors
-  static Color creamColor = Color(0xfff5f5f5);
+  static Color creamColor = const Color(0xfff5f5f5);
   static Color darkcreamColor = Vx.gray900;
-  static Color darkBluishColor = Color(0xff403b58);
+  static Color darkBluishColor = const Color(0xff403b58);
   static Color purpleBluishColor = Vx.indigo500;
 }

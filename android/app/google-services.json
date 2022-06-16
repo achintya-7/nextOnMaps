@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "481442431542",
+    "firebase_url": "https://travelapp-343011-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "travelapp-343011",
     "storage_bucket": "travelapp-343011.appspot.com"
   },
@@ -14,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "481442431542-lp91j3f9tjnjg6bi392bmpr1olh4kssc.apps.googleusercontent.com",
+          "client_id": "481442431542-34vnfjsg5q5cijr1ivtrlfohbpusc3k1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nextonmaps",
+            "certificate_hash": "15bf982d3eb5a9c6f6b3358ffb06fbd4c4945b29"
+          }
+        },
+        {
+          "client_id": "481442431542-6nqm3ef2dcma5so47289mnpj2vf6h6qs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.nextonmaps",
             "certificate_hash": "6289efcd4175ab34fc03b95876c1466874255319"
-          }
-        },
-        {
-          "client_id": "481442431542-td9qpsme130n69r78jafd19f5m2uqvs1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nextonmaps",
-            "certificate_hash": "6ab7f0b967bfb7230fc788f6bb10048a475157d6"
           }
         },
         {

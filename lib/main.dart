@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:nextonmaps/pages/HomePage.dart';
-import 'package:nextonmaps/pages/SignInPage.dart';
-import 'package:nextonmaps/services/Auth_Service.dart';
+import 'package:nextonmaps/pages/home_page.dart';
+import 'package:nextonmaps/pages/signing_in.dart';
+import 'package:nextonmaps/services/auth_service.dart';
 
 List<String> testDevices = ['CAF14E87AAF593178862481BDD790971'];
 void main() async {
@@ -18,7 +19,10 @@ void main() async {
       RequestConfiguration(testDeviceIds: testDevices);
   MobileAds.instance.updateRequestConfiguration(configuration);
 
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -31,7 +35,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AuthClass authClass = AuthClass();
   late StreamSubscription<User?> user;
-  // final storage = new FlutterSecureStorage();
   late bool isSignIn;
   List<String> testDevices = ['CAF14E87AAF593178862481BDD790971'];
 
@@ -39,13 +42,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    if (// readVerification() == null ||
-        FirebaseAuth.instance.currentUser == null) {
+    if (FirebaseAuth.instance.currentUser == null) {
       isSignIn = false;
-      print("signed out");
     } else {
       isSignIn = true;
-      print("signed in");
     }
   }
 
@@ -64,9 +64,4 @@ class _MyAppState extends State<MyApp> {
       home: isSignIn ? const HomePage() : const SignInPage(),
     );
   }
-
-  // Future<String?> readVerification() async {
-  //   String? val = await storage.read(key: "OtpSignIn");
-  //   return val;
-  // }
 }

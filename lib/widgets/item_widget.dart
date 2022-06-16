@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:nextonmaps/models/allPlaces.dart';
+import 'package:nextonmaps/models/all_places.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ItemWidget extends StatelessWidget {
