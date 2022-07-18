@@ -13,26 +13,49 @@
           "package_name": "com.example.nextonmaps"
         }
       },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSV112p1df8oVkVyllGA1rcPbkWFg221E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481442431542:android:80e9ca5531f572a3864e97",
+        "android_client_info": {
+          "package_name": "com.nexton.nextonmap.app"
+        }
+      },
       "oauth_client": [
         {
-          "client_id": "481442431542-34vnfjsg5q5cijr1ivtrlfohbpusc3k1.apps.googleusercontent.com",
+          "client_id": "481442431542-9qqffoonvvcmn26qiefcvd449q9b6hno.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.nextonmaps",
-            "certificate_hash": "15bf982d3eb5a9c6f6b3358ffb06fbd4c4945b29"
-          }
-        },
-        {
-          "client_id": "481442431542-6nqm3ef2dcma5so47289mnpj2vf6h6qs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.nextonmaps",
+            "package_name": "com.nexton.nextonmap.app",
             "certificate_hash": "6289efcd4175ab34fc03b95876c1466874255319"
           }
         },
         {
-          "client_id": "481442431542-ah0l3lcd6co8u4aai5igsva73shfc96j.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "481442431542-pkosliklr50gj56kvdaqape171haopav.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nexton.nextonmap.app",
+            "certificate_hash": "769c2db6210fcdb83b2d5a31bd7ec5908f6e554a"
+          }
+        },
+        {
+          "client_id": "481442431542-sgrl35patvd79iun4mtd7v5vss5vl1lp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nexton.nextonmap.app",
+            "certificate_hash": "15bf982d3eb5a9c6f6b3358ffb06fbd4c4945b29"
+          }
         }
       ],
       "api_key": [
@@ -42,12 +65,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "481442431542-ah0l3lcd6co8u4aai5igsva73shfc96j.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

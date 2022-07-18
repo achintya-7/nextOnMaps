@@ -1,4 +1,4 @@
-package com.example.nextonmaps
+package com.nexton.nextonmap.app
 
 import io.flutter.embedding.android.FlutterActivity
 

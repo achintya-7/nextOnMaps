@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nextonmaps/pages/home_page.dart';
 import 'package:nextonmaps/pages/phone_auth.dart';
 import 'package:nextonmaps/services/auth_service.dart';
 import 'package:nextonmaps/widgets/ButtonItems.dart';
@@ -70,24 +71,29 @@ class _SignInPageState extends State<SignInPage> {
                 );
               },
             ),
+            ButtonItem(
+                imagePath: "assets/images/profile.svg",
+                onClick: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (builder) => const HomePage()),
+                      (route) => false);
+                },
+                text: "Continue Anonymously",
+                size: 25),
             const Spacer(),
             InkWell(
-              child: const Text.rich(
-                TextSpan(
+              child: const Text.rich(TextSpan(
                   text: 'By continuing, you agree to our ',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                   children: [
                     TextSpan(
-                      text: 'Terms and Condition',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontSize: 12,
-                        color: Colors.blue
-                      )
-                    )
-                  ]
-                )
-              ),
+                        text: 'Terms and Condition',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 12,
+                            color: Colors.blue))
+                  ])),
               onTap: () {
                 Uri uri = Uri.parse(
                     'https://sites.google.com/view/nextonmap-privacypolicy/home');

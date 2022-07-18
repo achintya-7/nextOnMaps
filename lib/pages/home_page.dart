@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nextonmaps/pages/map_page.dart';
+import 'package:nextonmaps/pages/signing_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -68,6 +70,11 @@ class HomePage extends StatelessWidget {
                         ],
                       ).centered(),
                       const Spacer(),
+                      ElevatedButton(onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SignInPage()));
+                      }, child: const Text('Sign Out')),
+                      const SizedBox(height: 10,),
                       InkWell(
                         onTap: () {
                           Uri uri = Uri.parse('https://sites.google.com/view/nextonmap-privacypolicy/home');

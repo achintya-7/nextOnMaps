@@ -15,10 +15,11 @@ class PhoneAuth extends StatefulWidget {
 class _PhoneAuthState extends State<PhoneAuth> {
   // final storage = FlutterSecureStorage();
   var isLoading = false;
-  final snackBar = SnackBar(content: Text("Invalid OTP"));
+  bool isVerified = false;
   String pinNumber = "";
-  final failSnackBar =
-      SnackBar(content: Text("'Something went wrong, Are you connected with the Internet?'"));
+  final failSnackBar = SnackBar(
+      content:
+          Text("'Something went wrong, Are you connected with the Internet?'"));
   final snackBar2 =
       SnackBar(content: Text("Please enter a 10 digit Phone Number"));
   final snackBar3 = SnackBar(content: Text("Please enter a 6 digit OTP pin"));
@@ -76,16 +77,15 @@ class _PhoneAuthState extends State<PhoneAuth> {
                       Image.asset(
                         'assets/images/playstore.png',
                         height: 100,
-                        width: 100,  
+                        width: 100,
                       ),
                       const Spacer(),
                       Text(
-                        'Next On Map', 
+                        'Next On Map',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold
-                        ),
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
                       ),
                       const Spacer()
                     ],
@@ -137,46 +137,18 @@ class _PhoneAuthState extends State<PhoneAuth> {
                           : null;
                     }),
                     fixedSize: MaterialStateProperty.all(const Size(280, 50)),
-                    backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 14, 134, 233)),
+                    backgroundColor: MaterialStateProperty.all(isVerified
+                        ? Color.fromARGB(255, 14, 134, 233)
+                        : Colors.grey),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32),
-                            )
-                          )
-                        ),
-                onPressed: () async {
-                  await verifyCode();
-
-                  // if (pinNumber.length == 6) {
-                  //   smsCode = pinNumber;
-                  //   //     try {
-                  //   //       await auth
-                  //   //           .signInWithCredential(PhoneAuthProvider.credential(
-                  //   //               verificationId: verificationIDFinal,
-                  //   //               smsCode: smsCode))
-                  //   //           .then((value) async {
-                  //   //         if (value.user != null) {
-                  //   //           print("Pass to home");
-
-                  //   //           // await storage.write(key: "OtpSignIn", value: "True");
-
-                  //   //           Navigator.pushAndRemoveUntil(
-                  //   //               context,
-                  //   //               MaterialPageRoute(
-                  //   //                   builder: (builder) => HomePage()),
-                  //   //               (route) => false);
-                  //   //         }
-                  //   //       });
-                  //   //     } catch (e) {
-                  //   //       FocusScope.of(context).unfocus();
-                  //   //       final snackBar = SnackBar(content: Text(e.toString()));
-                  //   //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  //   //     }
-                  //   //     // authClass.signInWithPhoneNumber(
-                  //   //     //     verificationIDFinal, smsCode, context);
-                  // }
-                },
+                      borderRadius: BorderRadius.circular(32),
+                    ))),
+                onPressed: isVerified
+                    ? () async {
+                        await verifyCode();
+                      }
+                    : null,
                 child: const Text(
                   "Continue",
                   style: TextStyle(
@@ -213,21 +185,25 @@ class _PhoneAuthState extends State<PhoneAuth> {
           ScaffoldMessenger.of(context).showSnackBar(verifySnackBar);
         },
         verificationFailed: (FirebaseAuthException e) {
-          ScaffoldMessenger.of(context).showSnackBar(failSnackBar);
-          print(e.message);
+          print('Error : ${e.message}');
           setState(() {
             isLoading = false;
-            ScaffoldMessenger.of(context).showSnackBar(failSnackBar);
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Error : ${e.message}")));
           });
         },
         codeSent: (String verificationID, int? resendToken) {
-            verificationIDFinal = verificationID;
+          verificationIDFinal = verificationID;
+          setState(() {
+            isVerified = true;
+          });
         },
         codeAutoRetrievalTimeout: (String verificationID) {
           setState(() {
             isLoading = false;
             verificationIDFinal = verificationID;
-            ScaffoldMessenger.of(context).showSnackBar(failSnackBar);
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Error : OTP Time Out")));
           });
         },
         timeout: Duration(seconds: 50));
@@ -242,19 +218,16 @@ class _PhoneAuthState extends State<PhoneAuth> {
         await auth.signInWithCredential(credential).then((value) async {
           if (value.user != null) {
             print("Pass to home");
-
-            // await storage.write(key: "OtpSignIn", value: "True");
-
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (builder) => HomePage()),
                 (route) => false);
           }
         });
-      } catch (e) {
-        print("\n" + e.toString() + "\n");
+      } on FirebaseAuthException catch (e) {
+        print('Error : $e');
         FocusScope.of(context).unfocus();
-        final snackBar = SnackBar(content: Text("Invalid OTP, try again"));
+        final snackBar = SnackBar(content: Text("Error : Invalid OTP"));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     } else {
@@ -302,6 +275,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar2);
                 } else {
                   FocusManager.instance.primaryFocus?.unfocus();
+                  // isVerified = false;
                   await verifyPhone();
                   setState(() {
                     isLoading = true;

@@ -3,18 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nextonmaps/pages/home_page.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthClass {
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
 
   FirebaseAuth _auth = FirebaseAuth.instance;
-  final storage = FlutterSecureStorage();
 
   Future<void> googleSignIn(BuildContext context) async {
     try {
@@ -33,15 +30,13 @@ class AuthClass {
           UserCredential userCredential =
               await _auth.signInWithCredential(credential);
 
-          
-
-          storeToken(userCredential);
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (builder) => HomePage()),
               (route) => false);
         } catch (e) {
-          final snackbar = SnackBar(content: Text('Something went wrong, Are you connected with the Internet?'));
+          print(e);
+          final snackbar = SnackBar(content: Text(e.toString()));
           ScaffoldMessenger.of(context).showSnackBar(snackbar);
         }
       } else {
@@ -49,21 +44,10 @@ class AuthClass {
         ScaffoldMessenger.of(context).showSnackBar(snackbar);
       }
     } catch (e) {
-      final snackbar = SnackBar(content: Text(
-              'Something went wrong, Are you connected with the Internet?'));
+      print(e);
+      final snackbar = SnackBar(content: Text(e.toString()));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
-  }
-
-  Future<void> storeToken(UserCredential userCredential) async {
-    await storage.write(
-        key: "token", value: userCredential.credential?.token.toString());
-    await storage.write(
-        key: "userCredential", value: userCredential.toString());
-  }
-
-  Future<String?> getToken() async {
-    return await storage.read(key: "token");
   }
 
   Future<void> verifyPhoneNumber(
@@ -117,8 +101,6 @@ class AuthClass {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      storeToken(userCredential);
-
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (builder) => HomePage()),
@@ -126,6 +108,7 @@ class AuthClass {
 
       showSnackBar(context, "Logged In");
     } catch (e) {
+      print('Error : $e');
       showSnackBar(context, "Wrong OTP");
     }
   }
