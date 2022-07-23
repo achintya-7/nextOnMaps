@@ -5,9 +5,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:nextonmaps/my_services/auth_service_custom.dart';
 import 'package:nextonmaps/pages/home_page.dart';
 import 'package:nextonmaps/pages/signing_in.dart';
-import 'package:nextonmaps/services/auth_service.dart';
+
 
 List<String> testDevices = ['CAF14E87AAF593178862481BDD790971'];
 void main() async {

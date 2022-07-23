@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nextonmaps/my_services/auth_service_custom.dart';
 import 'package:nextonmaps/pages/home_page.dart';
 import 'package:nextonmaps/pages/phone_auth.dart';
-import 'package:nextonmaps/services/auth_service.dart';
 import 'package:nextonmaps/widgets/ButtonItems.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';

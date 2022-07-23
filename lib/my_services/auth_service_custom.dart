@@ -1,17 +1,16 @@
-// ignore_for_file: unused_field, prefer_final_fields, prefer_const_constructors, unused_import, prefer_function_declarations_over_variables
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nextonmaps/pages/home_page.dart';
 
 class AuthClass {
-  GoogleSignIn _googleSignIn = GoogleSignIn(
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
     ],
   );
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> googleSignIn(BuildContext context) async {
     try {
