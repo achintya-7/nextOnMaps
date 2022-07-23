@@ -88,7 +88,7 @@ class MapSampleTwoState extends State<MapSampleTwo> {
       for (var itemM in _markers) {
         if (Geolocator.distanceBetween(itemL.latitude, itemL.longitude,
                 itemM.position.latitude, itemM.position.longitude) <
-            20000) {
+            40000) { // earlier it was 20000
           _locations.add(itemM);
         }
       }
