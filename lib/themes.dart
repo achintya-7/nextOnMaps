@@ -24,4 +24,17 @@ class Mytheme {
   static Color darkcreamColor = Vx.gray900;
   static Color darkBluishColor = const Color(0xff403b58);
   static Color purpleBluishColor = Vx.indigo500;
+
+  static ButtonStyle customButtonStyle = ButtonStyle(
+      enableFeedback: true,
+      overlayColor: MaterialStateProperty.resolveWith((states) {
+        return states.contains(MaterialState.pressed) ? Colors.grey : null;
+      }),
+      elevation: MaterialStateProperty.all(8),
+      fixedSize: MaterialStateProperty.all(const Size(250, 50)),
+      backgroundColor: MaterialStateProperty.all(Colors.white),
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+              side: const BorderSide(color: Colors.black, width: 3))));
 }
