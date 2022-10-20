@@ -33,7 +33,7 @@ class _SignInPageState extends State<SignInPage> {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/Bikaner.jpg"),
+                image: AssetImage("assets/images/bsckground_home.png"),
                 fit: BoxFit.cover)),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -41,16 +41,14 @@ class _SignInPageState extends State<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+            const Spacer(),
             const Text(
               "Sign In",
               style: TextStyle(
-                fontSize: 35,
+                fontSize: 25,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
             ButtonItem(
               imagePath: "assets/images/google.svg",
@@ -79,9 +77,8 @@ class _SignInPageState extends State<SignInPage> {
                       MaterialPageRoute(builder: (builder) => const HomePage()),
                       (route) => false);
                 },
-                text: "Continue Anonymously",
+                text: "Continue as Guest",
                 size: 25),
-            const Spacer(),
             InkWell(
               child: const Text.rich(TextSpan(
                   text: 'By continuing, you agree to our ',

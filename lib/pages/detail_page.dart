@@ -189,19 +189,6 @@ class DetailsPage extends StatelessWidget {
                   const SizedBox(
                     height: 12,
                   ),
-                  ElevatedButton(
-                      style: Mytheme.customButtonStyle,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text(
-                        "Go Back",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )),
                 ],
               ),
             ).pOnly(bottom: 20)
