@@ -40,58 +40,62 @@ class _PhoneAuthState extends State<PhoneAuth> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(
-          "Phone OTP",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("assets/images/otp_background.png"),
+            fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            "Phone OTP",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      bottomNavigationBar: Row(
-        children: [
-          Spacer(),
-          Visibility(
-              visible: isLoading,
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.transparent,
-              ).p(16),
-              replacement: SizedBox()),
-        ],
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: SingleChildScrollView(
+        bottomNavigationBar: Row(
+          children: [
+            Spacer(),
+            Visibility(
+                visible: isLoading,
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.transparent,
+                ).p(16),
+                replacement: SizedBox()),
+          ],
+        ),
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                color: Color.fromARGB(255, 14, 134, 233),
-                child: Center(
-                  child: Column(
-                    children: [
-                      const Spacer(),
-                      Image.asset(
-                        'assets/images/playstore.png',
-                        height: 100,
-                        width: 100,
-                      ),
-                      const Spacer(),
-                      Text(
-                        'Next On Map',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer()
-                    ],
-                  ),
-                ),
-              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+              // Container(
+              //   height: MediaQuery.of(context).size.height * 0.3,
+              //   color: Color.fromARGB(255, 14, 134, 233),
+              //   child: Center(
+              //     child: Column(
+              //       children: [
+              //         const Spacer(),
+              //         Image.asset(
+              //           'assets/images/playstore.png',
+              //           height: 100,
+              //           width: 100,
+              //         ),
+              //         const Spacer(),
+              //         Text(
+              //           'Next On Map',
+              //           style: TextStyle(
+              //               color: Colors.white,
+              //               fontSize: 30,
+              //               fontWeight: FontWeight.bold),
+              //         ),
+              //         const Spacer()
+              //       ],
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 20),
               textField(),
               SizedBox(height: 20),
@@ -302,11 +306,11 @@ class _PhoneAuthState extends State<PhoneAuth> {
             hintText: "Enter your Phone",
             hintStyle: TextStyle(color: Colors.grey),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.black),
-                borderRadius: BorderRadius.all(Radius.circular(32))),
+                borderSide: BorderSide(width: 1, color: Colors.black),
+                borderRadius: BorderRadius.all(Radius.circular(12))),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.black),
-                borderRadius: BorderRadius.all(Radius.circular(32)))),
+                borderSide: BorderSide(width: 1, color: Colors.black),
+                borderRadius: BorderRadius.all(Radius.circular(12)))),
       ).pOnly(left: 12, right: 12),
     );
   }

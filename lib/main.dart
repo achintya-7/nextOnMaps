@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   AuthClass authClass = AuthClass();
   late StreamSubscription<User?> user;
   late bool isSignIn;
-  List<String> testDevices = ['CAF14E87AAF593178862481BDD790971'];
+  // List<String> testDevices = ['CAF14E87AAF593178862481BDD790971'];
 
   @override
   void initState() {
