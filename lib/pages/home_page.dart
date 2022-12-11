@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nextonmaps/constants.dart';
 import 'package:nextonmaps/pages/map_page.dart';
 import 'package:nextonmaps/pages/signing_in.dart';
+import 'package:nextonmaps/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -25,95 +26,98 @@ class HomePage extends StatelessWidget {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          drawer: SafeArea(
-            child: Drawer(
-              backgroundColor: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 3)),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        const Spacer(),
-                        const Text(
-                          'Contact Us',
-                          style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            const Spacer(flex: 3),
-                            IconButton(
-                                onPressed: () {
-                                  Uri uri = Uri.parse(
-                                      'https://www.instagram.com/nextonmap/');
-                                  _launchUrl(uri);
-                                },
-                                icon: const FaIcon(FontAwesomeIcons.instagram,
-                                    size: 45)),
-                            const Spacer(flex: 1),
-                            IconButton(
-                                onPressed: () {
-                                  Uri uri = Uri.parse(
-                                      'https://www.facebook.com/nextonmap-100479358427034/?ref=pages_you_manage');
-                                  _launchUrl(uri);
-                                },
-                                icon: const FaIcon(FontAwesomeIcons.facebook,
-                                    size: 45)),
-                            const Spacer(flex: 1),
-                            IconButton(
-                                onPressed: () {
-                                  Uri uri = Uri.parse(
-                                      'https://www.youtube.com/channel/UCF8Yg_x_OL3tvf2KnUzHhbA');
-                                  _launchUrl(uri);
-                                },
-                                icon: const FaIcon(FontAwesomeIcons.youtube,
-                                    size: 45)),
-                            const Spacer(flex: 3),
-                          ],
-                        ).centered(),
-                        const Spacer(),
-                        ElevatedButton(
-                            onPressed: () {
-                              FirebaseAuth.instance.signOut();
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignInPage()));
-                            },
-                            child: const Text('Sign Out')),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Uri uri = Uri.parse(
-                                'https://sites.google.com/view/nextonmap-privacypolicy/home');
-                            _launchUrl(uri);
-                          },
-                          child: const Text(
-                            'Terms and Conditions',
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Color.fromARGB(255, 8, 89, 230),
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10)
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          drawer: const Drawer(
+            child: DrawerWidget(),
           ),
+          // drawer: SafeArea(
+          //   child: Drawer(
+          //     backgroundColor: Colors.white,
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(8.0),
+          //       child: Container(
+          //         height: double.infinity,
+          //         width: double.infinity,
+          //         decoration: BoxDecoration(
+          //             border: Border.all(color: Colors.black, width: 3)),
+          //         child: Center(
+          //           child: Column(
+          //             children: [
+          //               const Spacer(),
+          //               const Text(
+          //                 'Contact Us',
+          //                 style: TextStyle(
+          //                     fontSize: 40, fontWeight: FontWeight.bold),
+          //               ),
+          //               const SizedBox(height: 20),
+          //               Row(
+          //                 children: [
+          //                   const Spacer(flex: 3),
+          //                   IconButton(
+          //                       onPressed: () {
+          //                         Uri uri = Uri.parse(
+          //                             'https://www.instagram.com/nextonmap/');
+          //                         _launchUrl(uri);
+          //                       },
+          //                       icon: const FaIcon(FontAwesomeIcons.instagram,
+          //                           size: 45)),
+          //                   const Spacer(flex: 1),
+          //                   IconButton(
+          //                       onPressed: () {
+          //                         Uri uri = Uri.parse(
+          //                             'https://www.facebook.com/nextonmap-100479358427034/?ref=pages_you_manage');
+          //                         _launchUrl(uri);
+          //                       },
+          //                       icon: const FaIcon(FontAwesomeIcons.facebook,
+          //                           size: 45)),
+          //                   const Spacer(flex: 1),
+          //                   IconButton(
+          //                       onPressed: () {
+          //                         Uri uri = Uri.parse(
+          //                             'https://www.youtube.com/channel/UCF8Yg_x_OL3tvf2KnUzHhbA');
+          //                         _launchUrl(uri);
+          //                       },
+          //                       icon: const FaIcon(FontAwesomeIcons.youtube,
+          //                           size: 45)),
+          //                   const Spacer(flex: 3),
+          //                 ],
+          //               ).centered(),
+          //               const Spacer(),
+          //               ElevatedButton(
+          //                   onPressed: () {
+          //                     FirebaseAuth.instance.signOut();
+          //                     Navigator.pushReplacement(
+          //                         context,
+          //                         MaterialPageRoute(
+          //                             builder: (context) =>
+          //                                 const SignInPage()));
+          //                   },
+          //                   child: const Text('Sign Out')),
+          //               const SizedBox(
+          //                 height: 10,
+          //               ),
+          //               InkWell(
+          //                 onTap: () {
+          //                   Uri uri = Uri.parse(
+          //                       'https://sites.google.com/view/nextonmap-privacypolicy/home');
+          //                   _launchUrl(uri);
+          //                 },
+          //                 child: const Text(
+          //                   'Terms and Conditions',
+          //                   style: TextStyle(
+          //                     decoration: TextDecoration.underline,
+          //                     color: Color.fromARGB(255, 8, 89, 230),
+          //                     fontSize: 12,
+          //                   ),
+          //                 ),
+          //               ),
+          //               const SizedBox(height: 10)
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           appBar: AppBar(
             centerTitle: true,
             title: const Text("Next On Map",
