@@ -86,11 +86,15 @@ class WashRoomPage extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                 child: TextField(
                   controller: originController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Origin",
-                    border: OutlineInputBorder(
+                    suffixIcon: IconButton(
+                        onPressed: () => originController.clear(),
+                        icon: const Icon(Icons.clear)),
+                    prefixIcon: const Icon(Icons.location_on),
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
@@ -102,11 +106,15 @@ class WashRoomPage extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 30),
                 child: TextField(
                   controller: destinationController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     fillColor: Colors.white,
+                    prefixIcon: const Icon(Icons.location_on),
+                    suffixIcon: IconButton(
+                        onPressed: () => originController.clear(),
+                        icon: const Icon(Icons.clear)),
                     hintText: "Destination",
                     filled: true,
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
@@ -121,8 +129,6 @@ class WashRoomPage extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                       onPressed: () {
-                        
-
                         if (originController.text.isEmpty) {
                           Fluttertoast.showToast(msg: "Please fill Origin");
                           return;
