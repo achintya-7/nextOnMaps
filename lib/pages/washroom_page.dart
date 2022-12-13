@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:nextonmaps/pages/washroom_list.dart';
 import 'package:nextonmaps/widgets/sundar_card.dart';
 
 class WashRoomPage extends StatelessWidget {
@@ -78,7 +79,7 @@ class WashRoomPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
 
               // * TextFiellds
               Padding(
@@ -122,7 +123,7 @@ class WashRoomPage extends StatelessWidget {
               ),
 
               // * Button
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
 
               SizedBox(
                   width: 180,
@@ -140,9 +141,13 @@ class WashRoomPage extends StatelessWidget {
                         }
 
                         // * Navigate to next page
-                        print("OK");
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => WashRoomListPage(
+                                origin: originController.text,
+                                destination: destinationController.text)));
                       },
-                      child: const Text("Search")))
+                      child: const Text("Search",
+                          style: TextStyle(fontSize: 20)))),
             ],
           )),
     );
