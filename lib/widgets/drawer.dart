@@ -1,16 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nextonmaps/my_services/map_service.dart';
 import 'package:nextonmaps/pages/signing_in.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
-
-  void _launchUrl(Uri uri) async {
-    if (!await launchUrl(uri)) throw 'Could not launch $uri';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +64,7 @@ class DrawerWidget extends StatelessWidget {
                       size: 35,
                     ),
                     onPressed: () {
-                      _launchUrl(
+                      MapService.launchUrlFunc(
                           Uri.parse('https://www.instagram.com/nextonmap/'));
                     }),
                 IconButton(
@@ -79,7 +74,7 @@ class DrawerWidget extends StatelessWidget {
                       size: 35,
                     ),
                     onPressed: () {
-                      _launchUrl(Uri.parse(
+                      MapService.launchUrlFunc(Uri.parse(
                           'https://www.facebook.com/nextonmap-100479358427034/?ref=pages_you_manage'));
                     }),
                 IconButton(
@@ -89,7 +84,7 @@ class DrawerWidget extends StatelessWidget {
                       size: 35,
                     ),
                     onPressed: () {
-                      _launchUrl(Uri.parse(
+                      MapService.launchUrlFunc(Uri.parse(
                           'https://www.youtube.com/channel/UCF8Yg_x_OL3tvf2KnUzHhbA'));
                     }),
               ],
@@ -121,7 +116,7 @@ class DrawerWidget extends StatelessWidget {
             Center(
                 child: TextButton(
               onPressed: () {
-                _launchUrl(Uri.parse(
+                MapService.launchUrlFunc(Uri.parse(
                     'https://sites.google.com/view/nextonmap-privacypolicy/home'));
               },
               child: const Text(

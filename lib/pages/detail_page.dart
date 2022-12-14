@@ -93,7 +93,8 @@ class DetailsPage extends StatelessWidget {
                         return ListView.builder(
                           itemCount: data.length,
                           itemBuilder: (BuildContext context, int index) {
-                            DateTime date = DateTime.fromMillisecondsSinceEpoch(data[index].time * 1000);
+                            DateTime date = DateTime.fromMillisecondsSinceEpoch(
+                                data[index].time * 1000);
                             String formatDate = DateFormat.yMMMd().format(date);
                             return VxBox(
                               child: ListTile(
@@ -164,19 +165,19 @@ class DetailsPage extends StatelessWidget {
                   ElevatedButton(
                       style: Mytheme.customButtonStyle,
                       onPressed: () async {
-                        const urlOpen = "https://g.co/kgs/8v65s1";
-                        try {
-                          if (await canLaunch(item.link)) {
-                            await launch(
-                              item.link,
-                              forceWebView: false,
-                              enableJavaScript: true,
-                            );
-                          }
-                        } catch (e) {
-                          print("Error : " + e.toString());
-                        }
-                        print(item.link);
+                        // const urlOpen = "https://g.co/kgs/8v65s1";
+                        // try {
+                        //   if (await canLaunch(item.link)) {
+                        //     await launch(
+                        //       item.link,
+                        //       forceWebView: false,
+                        //       enableJavaScript: true,
+                        //     );
+                        //   }
+                        // } catch (e) {
+                        //   print("Error : " + e.toString());
+                        // }
+                        // print(item.link);
                       },
                       child: const Text(
                         "Get Directions",

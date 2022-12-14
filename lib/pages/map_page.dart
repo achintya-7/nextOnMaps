@@ -14,7 +14,7 @@ import 'package:nextonmaps/themes.dart';
 import 'package:nextonmaps/widgets/item_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:nextonmaps/location_service.dart';
+import 'package:nextonmaps/my_services/location_service.dart';
 import 'package:nextonmaps/models/all_places.dart';
 
 class MapSampleTwo extends StatefulWidget {

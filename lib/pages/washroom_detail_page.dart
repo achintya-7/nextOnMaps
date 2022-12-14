@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nextonmaps/models/all_places.dart';
+import 'package:nextonmaps/my_services/map_service.dart';
 
 class WashroomDetailPage extends StatelessWidget {
   final Item washroom;
@@ -87,7 +89,13 @@ class WashroomDetailPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        try {
+                          MapService.launchUrlFunc(Uri.parse(washroom.link));
+                        } catch (e) {
+                          Fluttertoast.showToast(msg: "Something went wrong");
+                        }
+                      },
                       child: const Text('Get Directions')),
                 ),
                 const SizedBox(height: 20),

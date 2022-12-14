@@ -4,10 +4,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:nextonmaps/location_service.dart';
+import 'package:nextonmaps/my_services/location_service.dart';
 import 'package:nextonmaps/models/all_places.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MapService {
+
+  // * Function to launch url
+  static void launchUrlFunc(Uri uri) async {
+    if (!await launchUrl(uri)) throw 'Could not launch $uri';
+  }
 
   // * This function is the driver function for the whole process. Call this function to get the list of recommended locations
   static Future<List<Marker>> driverFunc(
