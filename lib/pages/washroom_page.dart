@@ -3,8 +3,28 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nextonmaps/pages/washroom_list.dart';
 import 'package:nextonmaps/widgets/sundar_card.dart';
 
-class WashRoomPage extends StatelessWidget {
+class WashRoomPage extends StatefulWidget {
   const WashRoomPage({super.key});
+
+  @override
+  State<WashRoomPage> createState() => _WashRoomPageState();
+}
+
+class _WashRoomPageState extends State<WashRoomPage> {
+
+  late AssetImage image1;
+
+  @override
+  void initState() {
+    super.initState();
+    image1 = const AssetImage("assets/images/background/BG_washroom_page.jpg");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(image1, context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +32,9 @@ class WashRoomPage extends StatelessWidget {
     TextEditingController destinationController = TextEditingController();
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/BG_washroom_page.png'),
+          image: image1,
           fit: BoxFit.cover,
         ),
       ),

@@ -21,7 +21,7 @@ class WashroomDetailPage extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/BG_washroom_detail.png'),
+          image: AssetImage('assets/images/background/BG_washroom_detail.jpg'),
           fit: BoxFit.cover,
         ),
       ),

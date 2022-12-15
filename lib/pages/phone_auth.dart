@@ -43,7 +43,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/otp_background.png"),
+            image: AssetImage("assets/images/background/otp_background.jpg"),
             fit: BoxFit.cover),
       ),
       child: Scaffold(

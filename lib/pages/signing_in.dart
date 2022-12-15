@@ -16,6 +16,11 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   AuthClass authClass = AuthClass();
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   void _launchUrl(Uri uri) async {
     if (!await launchUrl(uri)) throw 'Could not launch $uri';
   }
@@ -33,7 +38,8 @@ class _SignInPageState extends State<SignInPage> {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/bsckground_home.png"),
+                image:
+                    AssetImage("assets/images/background/bsckground_home.jpg"),
                 fit: BoxFit.cover)),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

@@ -4,8 +4,31 @@ import 'package:nextonmaps/pages/washroom_page.dart';
 import 'package:nextonmaps/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Image image1;
+  late Image image2;
+
+  @override
+  void initState() {
+    super.initState();
+    image1 = Image.asset("assets/images/background/BG_home_page.jpg");
+    image2 = Image.asset("assets/images/background/BG_drawer.jpg");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(image1.image, context);
+    precacheImage(image2.image, context);
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +37,18 @@ class HomePage extends StatelessWidget {
     }
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/BG_home_page.png'),
+          image: image1.image,
           fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
-          drawer: const Drawer(
-            child: DrawerWidget(),
+          drawer: Drawer(
+            child: DrawerWidget(
+              image: image2,
+            ),
           ),
           appBar: AppBar(
             centerTitle: true,

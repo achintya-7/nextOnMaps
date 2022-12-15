@@ -5,7 +5,8 @@ import 'package:nextonmaps/my_services/map_service.dart';
 import 'package:nextonmaps/pages/signing_in.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  const DrawerWidget({super.key, required this.image});
+  final Image image;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class DrawerWidget extends StatelessWidget {
 
         // * Background Image
         child: Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/BG_drawer.png'),
+          image: image.image,
           fit: BoxFit.cover,
         ),
       ),
@@ -30,14 +31,14 @@ class DrawerWidget extends StatelessWidget {
 
             // * User Details
             Text(
-                "Hi ${FirebaseAuth.instance.currentUser!.displayName ?? "User"}",
+                "Hi ${FirebaseAuth.instance.currentUser?.displayName ?? "User"}",
                 style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black)),
             const SizedBox(height: 10),
             Text(
-              FirebaseAuth.instance.currentUser!.email ?? "",
+              FirebaseAuth.instance.currentUser?.email ?? "",
               style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 10),
