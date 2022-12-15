@@ -7,7 +7,7 @@ import 'package:nextonmaps/models/review_model.dart';
 class DBRepository {
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  Stream<List<ReviewModel>> getReviews(String placeName) async* {
+  static Stream<List<ReviewModel>> getReviews(String placeName, FirebaseFirestore db) async* {
     List<ReviewModel> reviews = [];
     try {
       var snapshot = await db.collection(placeName).orderBy('time', descending: true).get();

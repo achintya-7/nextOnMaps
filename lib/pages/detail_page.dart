@@ -78,7 +78,7 @@ class DetailsPage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 20, bottom: 20),
                 height: 300,
                 child: StreamBuilder<List<ReviewModel>>(
-                  stream: dbRepository.getReviews(item.name),
+                  stream: DBRepository.getReviews(item.name, FirebaseFirestore.instance),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       List<ReviewModel> data = snapshot.data;
@@ -91,6 +91,7 @@ class DetailsPage extends StatelessWidget {
                         );
                       } else {
                         return ListView.builder(
+                          shrinkWrap: true,
                           itemCount: data.length,
                           itemBuilder: (BuildContext context, int index) {
                             DateTime date = DateTime.fromMillisecondsSinceEpoch(

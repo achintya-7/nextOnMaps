@@ -26,6 +26,10 @@ class _CustomPopUpWidgetState extends State<CustomPopUpWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      elevation: 10,
       title: const Text('Add a Review'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -34,7 +38,7 @@ class _CustomPopUpWidgetState extends State<CustomPopUpWidget> {
             controller: widget.reviewController,
             maxLength: 1000,
             decoration: const InputDecoration(
-              labelText: "Add a review",
+              labelText: "Write a Review here",
             ),
             maxLines: 3,
           ),
