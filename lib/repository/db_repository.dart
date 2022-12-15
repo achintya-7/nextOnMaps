@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:nextonmaps/models/review_model.dart';
 
 class DBRepository {

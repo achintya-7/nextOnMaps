@@ -1,13 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nextonmaps/constants.dart';
-import 'package:nextonmaps/pages/map_page.dart';
-import 'package:nextonmaps/pages/signing_in.dart';
 import 'package:nextonmaps/pages/washroom_page.dart';
 import 'package:nextonmaps/widgets/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

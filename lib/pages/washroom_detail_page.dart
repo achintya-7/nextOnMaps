@@ -188,7 +188,6 @@ class ReviewWidget extends StatelessWidget {
                 ),
               );
             } else {
-              print(data.length);
               return ListView.builder(
                 shrinkWrap: true,
                 itemCount: data.length,
